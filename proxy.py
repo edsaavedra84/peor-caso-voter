@@ -5,7 +5,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 import zipfile,os
 
-def proxy_chrome(PROXY_HOST,PROXY_PORT,PROXY_USER,PROXY_PASS):
+def proxy_chrome(PROXY_HOST,PROXY_PORT,PROXY_USER,PROXY_PASS, INCOGNITO):
     manifest_json = """
             {
                 "version": "1.0.0",
@@ -69,7 +69,9 @@ def proxy_chrome(PROXY_HOST,PROXY_PORT,PROXY_USER,PROXY_PASS):
 
     co = Options()
     #extension support is not possible in incognito mode for now
-    #co.add_argument('--incognito')
+    if INCOGNITO == True:
+        co.add_argument('--incognito')
+        
     co.add_argument('--disable-gpu')
     #disable infobars
     co.add_argument('--disable-infobars')

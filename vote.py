@@ -12,7 +12,16 @@ from proxy import proxy_chrome
 
 
 
-usable_proxy = [
+usable_proxy = ["cl-san.pvdata.host",
+                "ca-van.pvdata.host","ca-tor.pvdata.host","ca-mon.pvdata.host","bg-sof.pvdata.host",
+                "br-sao.pvdata.host","be-bru.pvdata.host","at-wie.pvdata.host","au-syd.pvdata.host",
+                "au-mel.pvdata.host","au-per.pvdata.host","au-bri.pvdata.host","ar-bue.pvdata.host",
+                "br-sao.pvdata.host","us-sea.pvdata.host","us-pho.pvdata.host","us-nyc.pvdata.host",
+                "us-jer.pvdata.host","us-mia.pvdata.host","us-los.pvdata.host","us-las.pvdata.host",
+                "us-den.pvdata.host","us-dal.pvdata.host","us-chi.pvdata.host","us-buf.pvdata.host","us-atl.pvdata.host","ae-dub.pvdata.host","ua-nik.pvdata.host","uk-man.pvdata.host",
+                "uk-lon.pvdata.host","tr-ist.pvdata.host","th-ban.pvdata.host","tw-tai.pvdata.host",
+                "ch-zur.pvdata.host","se-sto.pvdata.host","se-kis.pvdata.host","se-got.pvdata.host",
+                "es-mad.pvdata.host","kr-seo.pvdata.host","za-joh.pvdata.host","sk-bra.pvdata.host",
                 "sg-sin.pvdata.host","rs-bel.pvdata.host","ro-buk.pvdata.host","pt-lis.pvdata.host",
                 "pl-tor.pvdata.host","ph-man.pvdata.host","pe-lim.pvdata.host","pa-pan.pvdata.host",
                 "no-osl.pvdata.host",
@@ -24,16 +33,7 @@ usable_proxy = [
                 "hu-bud.pvdata.host","hk-china.pvdata.host","hk-hon.pvdata.host","gr-ath.pvdata.host",
                 "de-fra.pvdata.host","de-ber.pvdata.host","fr-par.pvdata.host","fi-esp.pvdata.host",
                 "ee-tal.pvdata.host","dk-cop.pvdata.host","cz-pra.pvdata.host","cy-lim.pvdata.host",
-                "hr-zag.pvdata.host","cr-san.pvdata.host","co-bog.pvdata.host","cl-san.pvdata.host",
-                "ca-van.pvdata.host","ca-tor.pvdata.host","ca-mon.pvdata.host","bg-sof.pvdata.host",
-                "br-sao.pvdata.host","be-bru.pvdata.host","at-wie.pvdata.host","au-syd.pvdata.host",
-                "au-mel.pvdata.host","au-per.pvdata.host","au-bri.pvdata.host","ar-bue.pvdata.host",
-                "br-sao.pvdata.host","us-sea.pvdata.host","us-pho.pvdata.host","us-nyc.pvdata.host",
-                "us-jer.pvdata.host","us-mia.pvdata.host","us-los.pvdata.host","us-las.pvdata.host",
-                "us-den.pvdata.host","us-dal.pvdata.host","us-chi.pvdata.host","us-buf.pvdata.host","us-atl.pvdata.host","ae-dub.pvdata.host","ua-nik.pvdata.host","uk-man.pvdata.host",
-                "uk-lon.pvdata.host","tr-ist.pvdata.host","th-ban.pvdata.host","tw-tai.pvdata.host",
-                "ch-zur.pvdata.host","se-sto.pvdata.host","se-kis.pvdata.host","se-got.pvdata.host",
-                "es-mad.pvdata.host","kr-seo.pvdata.host","za-joh.pvdata.host","sk-bra.pvdata.host",]
+                "hr-zag.pvdata.host","cr-san.pvdata.host","co-bog.pvdata.host",]
 
 
 
@@ -52,52 +52,61 @@ for k in range (0, 60):
         print("setting driver opts")
 
         try:
-            driver = proxy_chrome(usable_proxy[j], 8080, "VZQQbvPTUYHQZR3svZEb73bJ", "eddie1")
-            time.sleep(2)
-            driver.set_page_load_timeout(30)
-            print("opening url")
-            driver.get("https://www.xencelabs.com/xencelabs-drawing-challenge-peace-on-earth-work-display?lang_select=en")
+            for m in range (0, 2):
+                incognito = False
+                if m == 1:
+                    incognito = True
 
-            WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//p[@class='f_po f_18']")))
-            driver.execute_script("window.scrollTo(0, 500)")
-            WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//p[@class='f_po f_18']")))
-            driver.find_element(By.XPATH, "//p[@class='f_po f_18']").click()
-            
-            counter = 1
-            VisibleError = True
-            while VisibleError and counter < 5:
-                try:
-                    WebDriverWait(driver, 2).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[data-id='"+votingfor+"']")))
-                    time.sleep(2)
-                    VisibleError = False
-                except Exception as error:
-                    print("not visible, scrolling")
-                    counter = counter + 1
-                    driver.execute_script("window.scroll(0,700+window.scrollY)")
+                driver = proxy_chrome(usable_proxy[j], 8080, "VZQQbvPTUYHQZR3svZEb73bJ", "eddie1", incognito)
+                time.sleep(2)
+                driver.set_page_load_timeout(30)
+                print("opening url")
+                driver.get("https://www.xencelabs.com/xencelabs-drawing-challenge-peace-on-earth-work-display?lang_select=en")
+
+                WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//p[@class='f_po f_18']")))
+                driver.execute_script("window.scrollTo(0, 500)")
+                WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//p[@class='f_po f_18']")))
+                driver.find_element(By.XPATH, "//p[@class='f_po f_18']").click()
+                
+                counter = 1
+                VisibleError = True
+                while VisibleError and counter < 5:
+                    try:
+                        WebDriverWait(driver, 2).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[data-id='"+votingfor+"']")))
+                        time.sleep(2)
+                        VisibleError = False
+                    except Exception as error:
+                        print("not visible, scrolling")
+                        counter = counter + 1
+                        driver.execute_script("window.scroll(0,700+window.scrollY)")
 
 
-            #driver.execute_script("window.scrollTo(0, 1000)")
-            #time.sleep(2)
-            #driver.execute_script("window.scrollTo(0, 2000)")
-            #time.sleep(2)
-            loc = driver.find_element(By.CSS_SELECTOR, "div[data-id='"+votingfor+"']").location
-            driver.execute_script("window.scrollTo(0,"+str(loc["y"]-200)+")")
-            
-            print("proxy -> " + str(usable_proxy[j]))
+                #driver.execute_script("window.scrollTo(0, 1000)")
+                #time.sleep(2)
+                #driver.execute_script("window.scrollTo(0, 2000)")
+                #time.sleep(2)
+                loc = driver.find_element(By.CSS_SELECTOR, "div[data-id='"+votingfor+"']").location
+                driver.execute_script("window.scrollTo(0,"+str(loc["y"]-200)+")")
+                
+                print("proxy -> " + str(usable_proxy[j]))
 
-            #WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, "li_"+votingfor)))
-            elementNum = str(driver.find_element(By.ID, "li_"+votingfor).text).split()[2]
-            print("current -> " + str(elementNum))
+                #WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, "li_"+votingfor)))
+                elementNum = str(driver.find_element(By.ID, "li_"+votingfor).text).split()[2]
+                print("current -> " + str(elementNum))
 
-            if k == 0 or k == 29:
-                with open("shopping_memo.txt", "a") as f:
-                    f.write("current -> " + str(elementNum))  
+                if k == 0 or k == 29:
+                    with open("shopping_memo.txt", "a") as f:
+                        f.write("current -> " + str(elementNum))  
 
-            # vote 6 times...
-            for i in range(0, 6):
-                WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[data-id='"+votingfor+"']")))
-                element = driver.find_element(By.CSS_SELECTOR, "div[data-id='"+votingfor+"']").click()
-                time.sleep(1)            
+                # vote 6 times...
+                for i in range(0, 6):
+                    try:
+                        WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[data-id='"+votingfor+"']")))
+                        element = driver.find_element(By.CSS_SELECTOR, "div[data-id='"+votingfor+"']").click()
+                        time.sleep(1)     
+                    except Exception as error:
+                        print("An exception occurred", error)    
+                        print("minor, just continue")
         except Exception as error:
             print("An exception occurred", error)    
             print("closing")
