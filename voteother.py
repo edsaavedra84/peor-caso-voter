@@ -1,6 +1,6 @@
 #from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium import webdriver
+#from selenium import webdriver
 
 # import requests
 import time
@@ -10,49 +10,49 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from proxy import proxy_chrome
 
+from seleniumwire import webdriver
 
 
-usable_proxy = [
-                "sg-sin.pvdata.host","rs-bel.pvdata.host","ro-buk.pvdata.host","pt-lis.pvdata.host",
-                "pl-tor.pvdata.host","ph-man.pvdata.host","pe-lim.pvdata.host","pa-pan.pvdata.host",
-                "no-osl.pvdata.host",
-                "ng-lag.pvdata.host","nz-auc.pvdata.host","nl-ams.pvdata.host",
-                "md-chi.pvdata.host","mx-mex.pvdata.host","mt-qor.pvdata.host","my-kua.pvdata.host",
-                "lu-lux.pvdata.host","lt-sia.pvdata.host","lv-rig.pvdata.host","jp-tok.pvdata.host",
-                "it-mil.pvdata.host","il-tel.pvdata.host","im-bal.pvdata.host","ie-dub.pvdata.host","ca-tor.pvdata.host","id-jak.pvdata.host",
-                "in-mum.pvdata.host","in-ban.pvdata.host","is-rey.pvdata.host",
-                "hu-bud.pvdata.host","hk-china.pvdata.host","hk-hon.pvdata.host","gr-ath.pvdata.host",
-                "de-fra.pvdata.host","de-ber.pvdata.host","fr-par.pvdata.host","fi-esp.pvdata.host",
-                "ee-tal.pvdata.host","dk-cop.pvdata.host","cz-pra.pvdata.host","cy-lim.pvdata.host",
-                "hr-zag.pvdata.host","cr-san.pvdata.host","co-bog.pvdata.host","cl-san.pvdata.host",
-                "ca-van.pvdata.host","ca-tor.pvdata.host","ca-mon.pvdata.host","bg-sof.pvdata.host",
-                "br-sao.pvdata.host","be-bru.pvdata.host","at-wie.pvdata.host","au-syd.pvdata.host",
-                "au-mel.pvdata.host","au-per.pvdata.host","au-bri.pvdata.host","ar-bue.pvdata.host",
-                "br-sao.pvdata.host","us-sea.pvdata.host","us-pho.pvdata.host","us-nyc.pvdata.host",
-                "us-jer.pvdata.host","us-mia.pvdata.host","us-los.pvdata.host","us-las.pvdata.host",
-                "us-den.pvdata.host","us-dal.pvdata.host","us-chi.pvdata.host","us-buf.pvdata.host","us-atl.pvdata.host","ae-dub.pvdata.host","ua-nik.pvdata.host","uk-man.pvdata.host",
-                "uk-lon.pvdata.host","tr-ist.pvdata.host","th-ban.pvdata.host","tw-tai.pvdata.host",
-                "ch-zur.pvdata.host","se-sto.pvdata.host","se-kis.pvdata.host","se-got.pvdata.host",
-                "es-mad.pvdata.host","kr-seo.pvdata.host","za-joh.pvdata.host","sk-bra.pvdata.host",]
+usable_proxy = ["syd.socks.ipvanish.com",
+"tor.socks.ipvanish.com",
+"par.socks.ipvanish.com",
+"fra.socks.ipvanish.com",
+"lin.socks.ipvanish.com",
+"nrt.socks.ipvanish.com",
+"ams.socks.ipvanish.com",
+"waw.socks.ipvanish.com",
+"lis.socks.ipvanish.com",
+"sin.socks.ipvanish.com",
+"sto.socks.ipvanish.com",
+"lon.socks.ipvanish.com",
+"iad.socks.ipvanish.com",
+"atl.socks.ipvanish.com",
+"chi.socks.ipvanish.com",
+"dal.socks.ipvanish.com",
+"den.socks.ipvanish.com",
+"lax.socks.ipvanish.com",
+"mia.socks.ipvanish.com",
+"nyc.socks.ipvanish.com",
+"phx.socks.ipvanish.com",
+"sea.socks.ipvanish.com"]
 
-
-
-#votingfor = "40"
+#votingfor = "40" UHh7jf73mr aojxUyYEPT
 votingfor = "29"
 
 for k in range (0, 60):
     print("Round number %s" % str(k) )
     for j in range (0, len(usable_proxy)):
-        proxy = {
+        options = {
             'proxy': {
-                'http': "http://VZQQbvPTUYHQZR3svZEb73bJ:eddie1@%s:8080" % usable_proxy[j],
-                'https': "http://VZQQbvPTUYHQZR3svZEb73bJ:eddie1@%s:8080" % usable_proxy[j]
+                'http': "socks5://UHh7jf73mr:aojxUyYEPT@%s:1080" % usable_proxy[j],
+                'https': "socks5://UHh7jf73mr:aojxUyYEPT@%s:1080" % usable_proxy[j]
                 }
             }
         print("setting driver opts")
 
         try:
-            driver = proxy_chrome(usable_proxy[j], 8080, "VZQQbvPTUYHQZR3svZEb73bJ", "eddie1")
+            #driver = proxy_chrome(usable_proxy[j], 1080, "UHh7jf73mr", "aojxUyYEPT")
+            driver = webdriver.Chrome(seleniumwire_options=options)
             time.sleep(2)
             driver.set_page_load_timeout(30)
             print("opening url")
