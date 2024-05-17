@@ -57,6 +57,7 @@ for k in range (0, 60):
                 if m == 1:
                     incognito = True
 
+                # Using temp password for testing purposes!
                 driver = proxy_chrome(usable_proxy[j], 8080, "VZQQbvPTUYHQZR3svZEb73bJ", "eddie1", incognito)
                 time.sleep(2)
                 driver.set_page_load_timeout(30)
